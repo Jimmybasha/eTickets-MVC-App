@@ -1,4 +1,5 @@
 ﻿using eTickets.Data.Enum;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -14,6 +15,7 @@ namespace eTickets.Models
         public DateTime EndDate { get; set; }
         public double Price { get; set; }
 
+        [DisplayName("Movie Image")]
         public string ImageURL { get; set; }
 
         public MovieCategory MovieCategory { get; set; }
