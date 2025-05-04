@@ -12,6 +12,7 @@
     "http": {
       "commandName": "Project",
       "dotnetRunMessages": true,
+      "launchUrl": "Movie",
       "launchBrowser": true,
       "applicationUrl": "http://localhost:5259",
       "environmentVariables": {
@@ -29,6 +30,7 @@
     },
     "IIS Express": {
       "commandName": "IISExpress",
+      "launchUrl": "Movie",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
