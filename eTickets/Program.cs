@@ -1,3 +1,4 @@
+using eTickets.Core.DependencyInjection;
 using eTickets.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,12 +17,15 @@ namespace eTickets
                     )
                 );
 
+            //Add DependencyInjection File here 
+            builder.Services.RegisterProjectServices();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
 
+            
 
             //Database seed
             AppDbInitializer.Seed(app);
