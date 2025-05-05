@@ -1,0 +1,18 @@
+﻿@keyframes flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 5px #f44336, 0 0 10px #f44336, 0 0 20px #f44336, 0 0 40px #ff0000, 0 0 80px #ff0000, 0 0 90px #ff0000, 0 0 100px #ff0000, 0 0 150px #ff0000;
+    }
+
+    20%, 24%, 55% {
+        opacity: 0.3;
+        text-shadow: none;
+    }
+}
+
+.flicker-text {
+    font-size: 10rem;
+    font-weight: bold;
+    color: #f44336;
+    animation: flicker 2s infinite;
+}
