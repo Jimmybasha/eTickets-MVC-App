@@ -1,10 +1,14 @@
 ﻿using eTickets.Models;
+using System.Linq.Expressions;
 
 namespace eTickets.Data.Base
 {
     public interface IEntityBaseRepository<T> where T : class, IEntityBase, new()
     {
         Task<IEnumerable<T>> GetAllAsync();
+
+        //For The Include Method
+        Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includeProperties);
 
         Task<T> GetByIdAsync(int id);
 
