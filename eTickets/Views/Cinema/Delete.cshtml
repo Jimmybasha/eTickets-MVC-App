@@ -1,0 +1,60 @@
+﻿@model Cinema
+
+@{
+    ViewData["Title"] = "Delete Cinema";
+}
+
+
+
+<div class="container mt-5">
+    <div class="card shadow-lg p-4 rounded-4">
+        <h2 class="mb-4 text-center">Delete Confirmation For  @Model.Name</h2>
+
+
+        <!-- Picture Preview -->
+        <div class="text-center mb-4">
+            <img id="picturePreview" src="https://via.placeholder.com/200"
+                 alt="Actor Profile Pic" class="img-thumbnail rounded-circle"
+                 style="width: 300px; height: 300px; object-fit:cover;">
+        </div>
+        <!-- Picture URL -->
+        <div class="mb-4">
+            <label asp-for="Logo" class="form-label">Picture URL</label>
+            <input asp-for="Logo" readonly type="url" class="form-control" id="pictureUrl" placeholder="Enter picture URL">
+        </div>
+
+
+
+        <!-- Name -->
+        <div class="form-floating mb-4">
+            <input asp-for="Name" readonly type="text" class="form-control" id="name" placeholder="Name">
+            <label asp-for="Name">Cinema Name</label>
+        </div>
+
+        <!-- Biography -->
+        <div class="form-floating mb-4">
+            <textarea asp-for="Description" readonly class="form-control" placeholder="Biography" id="biography" style="height: 150px"></textarea>
+            <label asp-for="Description">Description</label>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <a class="btn  btn-secondary me-2" asp-action="Index">Show All</a>
+            <form asp-action="Delete">
+                <input type="hidden" name="name" value="" asp-for="@Model.Id" />
+                <button type="submit" class="btn  btn-danger" asp-action="Delete">Confirm</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Run after the page is fully loaded
+    document.addEventListener('DOMContentLoaded', function () {
+        const input = document.getElementById('pictureUrl');
+        const img = document.getElementById('picturePreview');
+        const url = input.value;
+
+        // If the input has a value (after form error), set the preview to that value
+        img.src = url || 'https://via.placeholder.com/200';
+    });
+</script>

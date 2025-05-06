@@ -1,0 +1,100 @@
+﻿@model Movie
+
+@{
+    ViewData["Title"] = "Movie Details";
+}
+<link rel="stylesheet" href="~/css/movieDetails.css" asp-append-version="true" />
+
+<div class="movie-details-page">
+    <div class="movie-card">
+        <div class="movie-header">
+            <div class="movie-image">
+                <img src="@Model.ImageURL" alt="@Model.Name">
+                @if (DateTime.Now >= @Model.StartDate && DateTime.Now <= Model.EndDate)
+                {
+                    <span class="movie-status">
+                        Available
+                    </span>
+                }
+                else if (DateTime.Now > @Model.EndDate)
+                {
+                    <span class="movie-status bg-danger">
+                        Expired
+                    </span>
+                }
+                else
+                {
+                    <span class="movie-status bg-primary">
+                        Upcoming
+                    </span>
+                }
+            </div>
+            <div class="movie-info">
+                <h1>@Model.Name</h1>
+                <div class="movie-meta">
+                    <div class="category-row">
+                        <h5 class="movie-category-label">Category:</h5>
+                        <span class="movie-category @Model.MovieCategory.ToString().ToLower()">
+                            @Model.MovieCategory
+                        </span>
+                    </div>
+                </div>
+                <div class="category-row">
+                    <h5 class="movie-category-label">Description:</h5>
+                    <span>
+                        @Model.Description
+                    </span>
+                </div>
+                <br />
+                <div class="movie-dates">
+                    <h7><i class="fas fa-calendar-alt"></i> Start: @Model.StartDate.ToString("dd MMM yyyy")</h7>
+                    <br />
+                    <h7><i class="fas fa-calendar-check"></i> End: @Model.EndDate.ToString("dd MMM yyyy")</h7>
+                </div>
+            </div>
+        </div>
+
+        <div class="movie-actors">
+            <h3>Cast</h3>
+            <ul class="actor-list">
+                @foreach (var actorMovie in Model.MovieActors)
+                {
+                    <li>
+                        <img src="@actorMovie.Actor.ProfilePictureUrl" alt="@actorMovie.Actor.FullName" class="actor-profile-img">
+                        <a asp-controller="Actor" asp-action="Details" asp-route-id="@actorMovie.ActorId" >
+                            @actorMovie.Actor.FullName
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <div class="movie-cinema-producer">
+            <div class="cinema-info">
+                <h4>Cinema</h4>
+                <div class="cinema-item">
+                    <img src="@Model.Cinema.Logo" alt="@Model.Cinema.Name" class="cinema-profile-img">
+                    <p>@Model.Cinema.Name</p>
+                </div>
+            </div>
+
+            <div class="producer-info">
+                <h4>Producer</h4>
+                <div class="producer-item">
+                    <img src="@Model.Producer.ProfilePictureUrl" alt="@Model.Producer.FullName" class="producer-profile-img">
+                    <p>@Model.Producer.FullName</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="movie-cart">
+            <div class="cart-row">
+                <p class="price">$@Model.Price</p>
+                <button class="add-to-cart">
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>

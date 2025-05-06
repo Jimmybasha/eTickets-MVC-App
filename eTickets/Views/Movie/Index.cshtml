@@ -3,53 +3,60 @@
 @{
     ViewData["Title"] = "List Of Movies";
 }
-
+<style>
+    .movie-container a {
+        text-decoration: none;
+    }
+</style>
 
 <div class="movies-page">
 
-<div class="movie-container">
-    @foreach (var item in Model)
-    {
-        <div class="movie-card">
-            <div class="movie-image">
-                <img src="@item.ImageURL" alt="@item.Name">
-                @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
-                {
-                    <span class="movie-status">
-                        Available
-                        </span>
-                    }else if (DateTime.Now > item.EndDate)
-                    {
-                        <span class="movie-status bg-danger">
-                            Expired
-                        </span>
-                    }
-                else
-                {
-                    <span class="movie-status bg-primary">
-                        Upcoming
-                    </span>
-                }
-            </div>
-            <div class="movie-content">
-                <h2>@item.Name</h2>
-                <div class="movie-details">
-                    <p><i class="fas fa-video"></i> Cinema: @(item.Cinema != null ? item.Cinema.Name : "No Cinema Info")</p>
-                    <p><i class="fas fa-tags"></i> Category: @item.MovieCategory</p>
-                    <p><i class="fas fa-calendar-alt"></i> Start: @item.StartDate.ToString("dd MMM yy")</p>
-                        <p><i class="fas fa-calendar-check"></i> End: @item.EndDate.ToString("dd MMM yy")</p>
-                </div>
+    <div class="movie-container">
+        @foreach (var item in Model)
+        {
+            <a asp-action="Details" asp-route-id="@item.Id" class="movie-link">
+                <div class="movie-card">
+                    <div class="movie-image">
+                        <img src="@item.ImageURL" alt="@item.Name">
+                        @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
+                        {
+                            <span class="movie-status">
+                                Available
+                            </span>
+                        }
+                        else if (DateTime.Now > item.EndDate)
+                        {
+                            <span class="movie-status bg-danger">
+                                Expired
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="movie-status bg-primary">
+                                Upcoming
+                            </span>
+                        }
+                    </div>
+                    <div class="movie-content">
+                        <h2>@item.Name</h2>
+                        <div class="movie-details">
+                            <p><i class="fas fa-video"></i> Cinema: @(item.Cinema != null ? item.Cinema.Name : "No Cinema Info")</p>
+                            <p><i class="fas fa-tags"></i> Category: @item.MovieCategory</p>
+                            <p><i class="fas fa-calendar-alt"></i> Start: @item.StartDate.ToString("dd MMM yy")</p>
+                            <p><i class="fas fa-calendar-check"></i> End: @item.EndDate.ToString("dd MMM yy")</p>
+                        </div>
 
 
-                <div class="movie-cart">
-                    <span class="price">$@item.Price</span>
-                    <button class="add-to-cart">
-                        <i class="fas fa-shopping-cart"></i> Add to Cart
-                    </button>
+                        <div class="movie-cart">
+                            <span class="price">$@item.Price</span>
+                            <button class="add-to-cart">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+
+                    </div>
                 </div>
-               
-            </div>
-        </div>
-    }
-</div>
+            </a>
+        }
+    </div>
 </div>
