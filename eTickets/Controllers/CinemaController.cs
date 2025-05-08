@@ -28,6 +28,21 @@ namespace eTickets.Controllers
             return View(cinema);
         }
 
+        //Get Method
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
+
+
+        //Post Method
+        [HttpPost]
+        public async Task<IActionResult> Create(Cinema newCinema)
+        {
+            if (!ModelState.IsValid) return View(newCinema);
+            await cinemaService.AddAsync(newCinema);
+            return RedirectToAction("Index");
+        }
 
 
         //Get Method
@@ -46,6 +61,8 @@ namespace eTickets.Controllers
             await cinemaService.UpdateAsync(id, newCinema);
             return RedirectToAction("Index");
         }
+
+
 
 
 
