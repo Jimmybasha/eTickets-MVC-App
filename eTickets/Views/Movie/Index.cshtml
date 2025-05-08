@@ -3,19 +3,17 @@
 @{
     ViewData["Title"] = "List Of Movies";
 }
-<style>
-    .movie-container a {
-        text-decoration: none;
-    }
-</style>
 
+<link rel="stylesheet" href="~/css/movies.css" asp-append-version="true" />
+<br />
+@await Html.PartialAsync("PartialViews/_CreateNavigation", "Movie")
 <div class="movies-page">
-
     <div class="movie-container">
         @foreach (var item in Model)
         {
-            <a asp-action="Details" asp-route-id="@item.Id" class="movie-link">
-                <div class="movie-card">
+            <div class="movie-card">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success-movies"> <i class="fas fa-pencil-alt"></i> Edit </a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="movie-link">
                     <div class="movie-image">
                         <img src="@item.ImageURL" alt="@item.Name">
                         @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
@@ -55,8 +53,8 @@
                         </div>
 
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
         }
     </div>
 </div>

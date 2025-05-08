@@ -58,9 +58,7 @@
                             </tr>
                         }
                     </tbody>
-                    <a class="btn btn-outline-success" asp-action="Create">
-                        <i class="bi bi-plus-circle me-1"></i> Add Actor
-                    </a>
+                    @await Html.PartialAsync("PartialViews/_CreateNavigation", "Producer")
                 </table>
             </div>
         </div>

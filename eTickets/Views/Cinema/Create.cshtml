@@ -1,14 +1,14 @@
-﻿@model Producer
+﻿@model Cinema
 
 @{
-    ViewData["Title"] = "Create A new Producer";
+    ViewData["Title"] = "Create A new Cinema";
 }
 
 
 
 <div class="container mt-5">
     <div class="card shadow-lg p-4 rounded-4">
-        <h2 class="mb-4 text-center">Add A New Producer</h2>
+        <h2 class="mb-4 text-center">Add A New Cinema</h2>
 
         @*this will handle the Create post request*@
 
@@ -17,36 +17,38 @@
             <!-- Picture Preview -->
             <div class="text-center mb-4">
                 <img id="picturePreview" src="https://via.placeholder.com/200"
-                     alt="Producer Profile Pic" class="img-thumbnail rounded-circle"
+                     alt="Cinema logo" class="img-thumbnail rounded-circle"
                      style="width: 300px; height: 300px; object-fit:cover;">
             </div>
+
             <!-- Picture URL -->
             <div class="mb-4">
-                <label asp-for="ProfilePictureUrl" class="form-label">Picture URL</label>
-                <input asp-for="ProfilePictureUrl" type="url" class="form-control" id="pictureUrl" placeholder="Enter picture URL">
-                <span asp-validation-for="ProfilePictureUrl" class="text-danger"></span>
+                <label asp-for="Logo" class="form-label">Picture URL</label>
+                <input asp-for="Logo" type="url" class="form-control" id="pictureUrl" placeholder="Enter picture URL">
+                <span asp-validation-for="Logo" class="text-danger"></span>
             </div>
 
 
 
             <!-- Name -->
             <div class="form-floating mb-4">
-                <input asp-for="FullName" type="text" class="form-control" id="name" placeholder="Name">
-                <label asp-for="FullName">Full Name</label>
-                <span asp-validation-for="FullName" class="text-danger"></span>
+                <input asp-for="Name" type="text" class="form-control" id="name" placeholder="Name">
+                <label asp-for="Name">Cinema Name</label>
+                <span asp-validation-for="Name" class="text-danger"></span>
 
             </div>
 
             <!-- Biography -->
             <div class="form-floating mb-4">
-                <textarea asp-for="Bio" class="form-control" placeholder="Biography" id="biography" style="height: 150px"></textarea>
-                <label asp-for="Bio">Biography</label>
-                <span asp-validation-for="Bio" class="text-danger"></span>
+                <textarea asp-for="Description" class="form-control" placeholder="Biography" id="biography" style="height: 150px"></textarea>
+                <label asp-for="Description">Description</label>
+                <span asp-validation-for="Description" class="text-danger"></span>
             </div>
+
 
             <div class="d-flex justify-content-end">
                 <a class="btn btn-secondary me-2 hover-glow" asp-action="Index">Show All</a>
-                @await Html.PartialAsync("PartialViews/_Create&ShowAllItem", "Producer")
+                @await Html.PartialAsync("PartialViews/_Create&ShowAllItem", "Cinema")
             </div>
         </form>
     </div>

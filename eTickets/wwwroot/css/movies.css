@@ -8,110 +8,66 @@
 /* Body and HTML adjustments */
 html, body {
     height: 100%;
-    background-color: #121212; /* Dark background for the entire page */
-    margin: 0;
-    padding: 0;
-}
-
-/* Remove any margin or padding from navbar and surrounding elements */
-.navbar, .navbar-header, .navbar-collapse {
-    margin: 0;
-    padding: 0;
-    border: none; /* Remove any borders if added by default */
-}
-
-/* Ensure that no margin exists between navbar and body */
-body {
-    margin-top: 0; /* Remove margin above the body */
-}
-
-/* Optional: Adjust navbar to prevent any borders */
-.navbar {
-    border-bottom: none; /* Make sure there's no border below the navbar */
-}
-
-/* Optional: Reset footer margins */
-footer {
-    margin-top: 0; /* Remove any margin above footer */
-    padding: 0; /* Remove any padding */
-}
-
-.movies-page {
-    font-family: 'Montserrat', sans-serif;
     background-color: #121212;
-    color: #fff;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Movies page container */
+.movies-page {
     padding: 20px;
+    background-color: #121212;
     min-height: 100vh;
-}
-
-.navbar {
-    background-color: #1e1e1e; /* Dark color to match your theme */
-    color: #fff; /* Light text color */
-}
-
-.navbar-header {
-    background-color: #1e1e1e;
-}
-
-.navbar-nav {
     color: #fff;
 }
 
-.navbar a {
-    color: #f4b400; /* Accent color for links */
-}
-
-    .navbar a:hover {
-        color: #fff; /* Change hover effect if needed */
-    }
-
-.movie-details {
-    background: #222;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    font-size: 0.95rem;
-    color: #ccc;
-}
-
+/* Movie container: flexbox layout */
 .movie-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between cards */
+    justify-content: center; /* Center the cards */
 }
 
+/* Each movie card's base styles */
 .movie-card {
-    background: #1e1e1e;
+    background-color: #1e1e1e;
     border-radius: 15px;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
-    position: relative;
+    width: calc(25% - 20px); /* Set the width of each card */
+    box-sizing: border-box;
+    color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* Important for positioning the Edit button */
 }
 
+    /* On hover, the card lifts and casts a shadow */
     .movie-card:hover {
         transform: translateY(-10px);
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
     }
 
+/* Movie image styles */
 .movie-image {
     position: relative;
 }
 
     .movie-image img {
         width: 100%;
-        height: 350px;
+        height: 250px;
         object-fit: cover;
         display: block;
     }
 
+/* Movie status badge */
 .movie-status {
     position: absolute;
     top: 15px;
     left: 15px;
-    background: #f4b400;
+    background-color: #f4b400;
     color: #121212;
     padding: 5px 10px;
     border-radius: 20px;
@@ -120,103 +76,120 @@ footer {
     text-transform: uppercase;
 }
 
-
     .movie-status.available {
-        background: #28a745; /* Bootstrap's success green */
+        background: #28a745; /* Green for Available */
         color: #fff;
     }
 
     .movie-status.expired {
-        background: #dc3545; /* Bootstrap's danger red */
+        background: #dc3545; /* Red for Expired */
         color: #fff;
     }
 
     .movie-status.upcoming {
-        background: #007bff; /* Bootstrap's primary blue */
+        background: #007bff; /* Blue for Upcoming */
         color: #fff;
     }
 
+/* Movie content area */
 .movie-content {
-    padding: 20px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    flex: 1;
+    flex-grow: 1;
 }
 
+    /* Movie title */
     .movie-content h2 {
-        margin: 0 0 10px;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         color: #f4b400;
+        margin-bottom: 10px;
     }
 
-    .movie-content p {
-        flex: 1;
-        font-size: 0.95rem;
-        color: #ddd;
-        margin-bottom: 15px;
-    }
+/* Movie details section */
+.movie-details {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-bottom: 15px;
+}
 
+/* Movie cart container */
 .movie-cart {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-top: auto; /* Ensure it stays at the bottom of the card */
 }
 
+/* Price section */
 .price {
     font-size: 1.2rem;
-    font-weight: 600;
     color: #4caf50;
+    font-weight: bold;
 }
 
+/* Add to Cart button styling */
 .add-to-cart {
-    background: #f4b400;
-    border: none;
+    background-color: #f4b400;
+    color: #121212;
     padding: 8px 15px;
     border-radius: 25px;
-    cursor: pointer;
+    border: none;
     font-size: 0.9rem;
+    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 8px;
     transition: background 0.3s ease;
-    color: #121212;
+    white-space: nowrap; /* Prevents the button from wrapping */
 }
 
     .add-to-cart:hover {
-        background: #fff;
+        background-color: #fff;
         color: #121212;
     }
 
-.movie-actions {
-    display: flex;
-    gap: 15px;
-}
-
-.navbar-brand {
-    font-size: 1.5rem; /* Increase font size for better visibility */
-    font-weight: bold; /* Make the text bold */
-    color: #d4af37; /* Elegant gold color */
-    text-transform: uppercase; /* Uppercase letters for a bold effect */
-    letter-spacing: 2px; /* Add some letter spacing for a more stylish look */
-    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out; /* Smooth transition on hover */
-}
-
-    .navbar-brand:hover {
-        color: #ffd700; /* Lighter gold color on hover */
-        text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700; /* Glow effect for extra shine */
-    }
-
-.movie-actions button {
-    background: transparent;
-    border: none;
-    color: #f4b400;
-    font-size: 1.2rem;
+/* Edit button styling */
+.btn-success-movies {
+    background-color: #28a745;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 5px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    transition: background 0.3s ease;
     cursor: pointer;
-    transition: color 0.3s ease;
+    z-index: 10; /* Ensure it stays on top of the card */
 }
 
-    .movie-actions button:hover {
-        color: #fff;
+    .btn-success:hover-movies {
+        background-color: #218838;
     }
+
+
+/* Remove underline from links */
+.movie-link {
+    text-decoration: none; /* Removes the underline */
+    color: inherit; /* Inherit color from parent */
+}
+
+/* Adjust layout for smaller screens */
+@media (max-width: 1200px) {
+    .movie-card {
+        width: calc(33.33% - 20px); /* 3 per row */
+    }
+}
+
+@media (max-width: 768px) {
+    .movie-card {
+        width: calc(50% - 20px); /* 2 per row */
+    }
+}
+
+@media (max-width: 480px) {
+    .movie-card {
+        width: 100%; /* 1 per row */
+    }
+}
